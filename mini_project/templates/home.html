@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+{{ super() }}
+{% block body %}
+<div class="top_header" style="background-color: black;">
+    <div class="container" style="height:50px;">
+        <div class="row">
+            <div class="col-md-2 col-sm-2" style="background-color:red; height:50px; ">
+                <center>
+                    <h5 style="color:white; padding-top:6px;">HelpLine Number</h5>
+                </center>
+            </div>
+            <div class="col-md-10 col-sm-10">
+                <marquee style="padding-top:10.5px; font-size:16px; color:white;">
+                    Help Police, SMS your complaints on +918877566352 or +912344888848, Police Control Room 100, Traffic
+                    Whatsapp Helpline 8454999999, Alert Citizen 101
+                </marquee>
+            </div>
+        </div>
+    </div>
+    <div style="height:5px; background-color:red; width:100%;">
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/themca.css')}}">
+
+<br><br>
+<div s class="container">
+    <div class="col-md-9 col-sm-9">
+        <div class="row welcome">
+            <h3><b>WELCOME</b></h3>
+        </div>
+        <div>
+            The police are entrusted with the duty of maintaining the peace and harmony of a society. Moreover, they
+            also have the right to arrest and control people who do not follow the law. As a result, they are important
+            as they protect our society.
+            <br /><br />
+            Enforcing the laws of the land, the police also has the right to punish people who do not obey the law.
+            Consequently, we, as citizens, feel safe and do not worry much about our lives and property.
+        </div>
+        <br /><br />
+
+
+        <div class="row welcome">
+            <h3><b>SERVICES</b></h3>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <a class="link_white" href="/report">
+                    <div class="block card-1">
+                        <div class="services">
+                            <center><b>
+                                    <h2>Report Crime</h2>
+                                </b>
+                                <center>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-md-4 col-sm-4">
+                <a class="link_white" href="/cyber">
+                    <div class="block card-1">
+                        <div class="services">
+                            <center><b>
+                                    <h2>Report Cyber Crime</h2>
+                                </b>
+                                <center>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-md-4 col-sm-4">
+                <a class="link_white" href="/anonymy">
+                    <div class="block card-1">
+                        <div class="services">
+                            <center><b>
+                                    <h2>Anonymous Tip</h2>
+                                </b>
+                                <center>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <a class="link_white" href="/complainlist">
+                    <div class="block card-1">
+                        <div class="services">
+                            <center><b>
+                                    <h2>Complain List</h2>
+                                </b>
+                                <center>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-md-4 col-sm-4">
+                <a class="link_white" href="/status">
+                    <div class="block card-1">
+                        <div class="services">
+                            <center><b>
+                                    <h2>Complain Status</h2>
+                                </b>
+                                <center>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-md-4 col-sm-4">
+                <a class="link_white" href="/feedback">
+                    <div class="card-1 block">
+                        <div class="services">
+                            <center><b>
+                                    <h2>Feedback</h2>
+                                </b>
+                                <center>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
+
+

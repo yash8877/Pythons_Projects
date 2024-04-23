@@ -1,0 +1,151 @@
+.mt-100 {
+  margin-top: 50px;
+}
+
+#heading{
+  font-size: 90px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 150px;
+  color: #3F4E4F;
+}
+.bg-nav {
+  background: #00B4DB;
+  background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+  background: linear-gradient(to right, #0083B0, #00B4DB);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.navbar {
+  background-image: linear-gradient(rgb(0, 68, 255), rgb(98, 191, 221));
+
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 100%;
+  transition: top 0.3s;
+}
+
+.navbar:hover {
+  box-shadow: 10px 10px 10px gray;
+
+}
+
+#btt {
+  border-radius: 40px;
+  text-align: center;
+}
+
+.dropdown-menu {
+  padding: 30px;
+  border-radius: 20px;
+
+}
+
+.em {
+  font-size: 22px;
+}
+
+.ps {
+  font-size: 22px;
+}
+
+#btn1 {
+  background-color: #4267B2;
+}
+
+#btn2 {
+  background-color: #00acee;
+}
+
+#btn3 {
+  background-color: rgb(188, 42, 141);
+}
+
+#btn4 {
+  background-color: #0072b1;
+}
+
+#btn5 {
+  background-color: #171515;
+}
+
+.eye {
+  float: right;
+  top: -130px;
+  right: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+#hide2 {
+  display: none;
+}
+
+.top_header {
+  margin-top: 15px;
+}
+
+.welcome {
+  margin-top: 10px;
+  margin-left: 2px;
+  margin-right: 3px;
+  background-color: orange;
+  border-color: orange;
+  padding-left: 18px;
+  padding-bottom: 5px;
+}
+
+.services {
+  color: white;
+  width: 100%;
+  padding: 50px 15px;
+}
+
+#ser{
+  padding-top: 11px;
+  text-align: center;
+}
+
+#imgpro{
+  display: block;
+  border-radius: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: 50%;
+  width: 50%;
+  background-color: #9FC9F3;
+}
+#imgpro2{
+  display: block;
+  border-radius: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: 50%;
+  width: 50%;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page with Background Image Example</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ad_log.css')}}">
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div id="bg"></div>
+
+    <form method="post" action="/admin">
+        <div class="form-field">
+            <input type="email" name="username" placeholder="Email / Username" required />
+        </div>
+
+        <div class="form-field">
+            <input type="password" name="paswd" placeholder="Password" required />
+        </div>
+
+        <div class="form-field">
+            <button class="btn" type="submit">Log in</button>
+        </div>
+    </form>
+    <!-- partial -->
+
+</body>
+
+</html>

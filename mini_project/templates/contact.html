@@ -1,0 +1,97 @@
+{% set title = "Contact Us| " %}
+{% extends 'base.html' %}
+{% block body %}
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contact.css')}}">
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("XYaxD43rxPzOj_tgL");
+    })();
+  </script>
+</head>
+
+
+<div class="container">
+  <span class="big-circle"></span>
+  <img src="../static/images/shape.png" class="square" alt="" />
+  <div class="form">
+    <div class="contact-info">
+      <h3 class="title">Let's get in touch</h3>
+      <p class="text">
+      Please, if you have any questions regarding the website and any other thing just submit this contact form.
+      </p>
+
+      <div class="info">
+        <div class="information">
+          <img src="{{ url_for('static', filename='images/location.png')}}" class="icon" alt="" />
+          <p>Parul University,Limda,Waghodia road,Vadodara,Gujarat</p>
+        </div>
+        <div class="information">
+          <img src="{{ url_for('static', filename='images/email.png')}}" class="icon" alt="" />
+          <p>yash524767@gmail.com</p>
+        </div>
+        <div class="information">
+          <img src="{{ url_for('static', filename='images/phone.png')}}" class="icon" alt="" />
+          <p>8877524767</p>
+        </div>
+      </div>
+      <div class="social-media">
+        <p>Connect with us :</p>
+        <div class="social-icons">
+          <a href="#">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://mobile.twitter.com/iam_digpal">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.instagram.com/yash__rath0re/" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/yash-raj-934907221/" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="contact-form">
+      <span class="circle one"></span>
+      <span class="circle two"></span>
+
+      <form name="myform" autocomplete="off">
+        <h3 class="title">Contact us</h3>
+        <div class="input-container">
+          <input type="text" id="name" name="fuser" class="input" required />
+          <label for="">Username</label>
+          <span>Username</span>
+        </div>
+        <div class="input-container">
+          <input type="email" id="email" name="fmail" class="input" required />
+          <label for="">Email</label>
+          <span>Email</span>
+        </div>
+        <div class="input-container">
+          <input type="tel" id="phone" name="fphone" class="input" required />
+          <label for="">Phone</label>
+          <span>Phone</span>
+        </div>
+        <div class="input-container textarea">
+          <textarea id="message" name="fmessage" class="input" required></textarea>
+          <label for="">Message</label>
+          <span>Message</span>
+        </div>
+        <button type="submit" id="btnn" onclick="sendMail(); return false;">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script src="../static/css/app.js"></script>
+{% endblock body %}

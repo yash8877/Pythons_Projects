@@ -1,0 +1,107 @@
+{% extends 'base.html' %} 
+<body>
+{% block body %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/status.css')}}">
+
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <div class="rounded">
+                <div class="table-responsive table-borderless">
+
+                    <div>
+                        <table id="data" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>S/No</th>
+                                    <th>Case No</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Date</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Pincode</th>
+                                    <th>Mobile No.</th>
+                                    <th>Address</th>
+                                    <th>Description</th>
+                                    <th>Crime Type</th>
+                                    <th>Status</th>
+                                    <th>Update</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="table-body">
+                                {% for row in value %}
+                                <tr>
+                                    <td>{{ row[0] }}</td>
+                                    <td>{{ row[0] }}</td>
+                                    <td>{{ row[1] }}</td>
+                                    <td>{{ row[2] }}</td>
+                                    <td>{{ row[11] }}</td>
+                                    <td>{{ row[5] }}</td>
+                                    <td>{{ row[6] }}</td>
+                                    <td>{{ row[7] }}</td>
+                                    <td>{{ row[13] }}</td>
+                                    <td>{{ row[10] }}</td>
+                                    <td>{{ row[9] }}</td>
+                                    <td>{{ row[8] }}</td>
+
+                                    <form action="/updateCrime" method="post">
+                                        <td>
+                                            <div class="col-75">
+                                                <select name="statusConfirm">
+                                                    <option value="" selected>{{ row[-1]}}</option>
+                                                    <option>Confirmed</option>
+                                                    <option>Pending</option>
+                                                    <option>Rejected</option>
+                                                </select>
+
+
+
+
+
+                                            </div>
+                                            <!-- <div>
+                                                <select name="uniqueId">
+                                                    <option value="" selected>None</option>
+                                                    <option>Confirmed</option>
+                                                    <option>Pending</option>
+                                                    <option>Rejected</option>
+                                                </select>
+
+                                            </div> -->
+
+
+
+
+                                            <!-- <div name="uniqueId"> {{ row[0] }}</div> -->
+
+
+
+
+
+
+                                        </td>
+                                        <input type="hidden" name="uniqueId" value="{{ row[0]}}">
+                                        <td> <input type="submit"> </td>
+                                    </form>
+
+
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+
+{% endblock body %}
+</body>

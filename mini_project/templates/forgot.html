@@ -1,0 +1,118 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+{% set title = "Forgot Password| " %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-nav">
+  <a class="navbar-brand" href="/">Online Crime Reporting System</a>
+  <div class="container-fluid justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav my-2 my-lg-0 topnav">
+      <li class="d-flex">
+        <a class="nav-link btn btn-primary mx-2 text-white" type="button" href="/" data-toggle="modal" data-target="#myModal" style="width: 80px;">Login</a>
+      </li>
+      <li class="d-flex">
+        <a class="nav-link btn btn-danger mx-0 text-white" type="button" href="/signup" data-toggle="modal" data-target="#myModal" style="width: 80px;">Signup</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path
+      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+  </symbol>
+  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path
+      d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+  </symbol>
+</svg>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div style="margin-bottom: 250px; margin-top: 40px; background-color:aliceblue;" class="col-md-6 py-3">
+    <h2 class="py-3">Reset Password!!</h2>
+    <form method="post" , action="/forgot">
+      <label for="inputaddress" style="font-size:23px;"><b>Email</b></label>
+      <input name="fgemail" type="email" class="form-control" id="inputaddress" placeholder="Enter your Email address"><br>
+      <button style="background-color: #ff3f20;" type="submit" class="btn btn-primary">Submit</button><br><br>
+      <!-- <span id="otp"> -->
+      <!-- </span>
+      <button onclick="showhide()">OTP</button> -->
+
+  {% if error %}
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+      <use xlink:href="#exclamation-triangle-fill" />
+    </svg>
+    <div>
+      {{error}}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if msg %}
+  <div class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+      <use xlink:href="#check-circle-fill" />
+    </svg>
+    <div>
+      {{msg}}
+    </div>
+  </div>
+  {% endif %}
+  </form>
+  <form method="post" action="/reset">
+    <!-- <input name="frgemail" type="email" class="form-control" id="inputaddress" placeholder="Enter your Email address"><br> -->
+
+    <label for="inputaddress" style="font-size:23px;"><b>OTP</b></label>
+    <input name="verify" type="number" class="form-control" placeholder="Enter your OTP"><br>
+    <label for="inputaddress" style="font-size:23px;"><b>New Password</b></label>
+    <input name="newpass" type="password" class="form-control" placeholder="Enter your new password"><br>
+    <button style="background-color: #ff3f20;" type="submit" class="btn btn-primary">Reset</button><br><br>
+  </form>
+  {% if error %}
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+      <use xlink:href="#exclamation-triangle-fill" />
+    </svg>
+    <div>
+      {{error1}}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if msg %}
+  <div class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+      <use xlink:href="#check-circle-fill" />
+    </svg>
+    <div>
+      {{msg1}}
+    </div>
+  </div>
+  {% endif %}
+</div>
+<div class="col-md-3"></div>
+</div>
+
+<script>
+  if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+}
+
+// var a;
+//   function showhide()
+//   {
+//       if(a==1)
+//       {
+//           document.getElementById("otp").style.display="inline";
+//           return a=0;
+//       }
+//       else{
+//           document.getElementById("otp").style.display="none"
+//           return a=1;
+//       }
+//   }
+</script>
+
+
+{% endblock body %}

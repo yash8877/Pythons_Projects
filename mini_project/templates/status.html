@@ -1,0 +1,51 @@
+{% set title = "Complain Status| " %}
+{% extends 'base.html' %}
+{% block body %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/status.css')}}">
+<div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <div class="rounded">
+                <div class="table-responsive table-borderless">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Complain number</th>
+                                <th>User name</th>
+                                <th>Complain status</th>
+                                <th>Crime Type</th>
+                                <th>Registered Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            {% for row in value %}
+                            <tr class="cell-1">
+                                <td>{{ row[0]}}</td>
+                                <td>{{ row[1]}}</td>
+                                <td>{{ row[-1]}}</td>
+                                <td>{{ row[8]}}</td>
+                                <td>{{ row[11]}}</td>
+                                <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                            </tr>
+                           
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<script>
+    $(document).ready(function () {
+
+        $('.toggle-btn').click(function () {
+            $(this).toggleClass('active').siblings().removeClass('active');
+        });
+
+    });
+</script>
+{% endblock body %}

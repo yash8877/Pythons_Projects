@@ -1,0 +1,499 @@
+                <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Resources
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Carfax</a>
+                            <a class="dropdown-item" href="#">Carproof</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Omnivic</a>
+                        </div>
+                    </li>
+########logic to hide navbar while scrolling################# 
+<script>
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+</script>
+*****************************************************************
+#################logic of sending mail through js##################
+<!-- <script src=" https://smtpjs.com/v3/smtp.js"></script>
+<script>
+  function sendEmail() {
+    Email.send({
+      Host: "smtp.gmail.com",
+      Username: "yash524767@gmail.com",
+      Password: "tr@(ktheh@ckEr",
+      To: 'yash524767@gmail.com',
+      From: document.getElementById("email").value,
+      Subject: "New Contact",
+      Body: "Name: " + document.getElementById("name").value + "<br> Email: " + document.getElementById("email").value
+        + "<br> Phone: " + document.getElementById("phone").value + "<br> Message: " + document.getElementById("message").value
+
+    }).then(
+      message => alert("Message Sent successfully")
+    );
+  }
+</script> -->
+******************************            <script>
+              if ( window.history.replaceState ) {
+                  window.history.replaceState( null, null, window.location.href );
+              }
+          </script>****************************************************************
+<input id="myText" type="text" onkeyup="stoppedTyping()">
+<input type="button" value="Click to begin!" id="start_button" onclick="verify()" disabled/> 
+
+<script type="text/javascript">
+    function stoppedTyping(){
+        if(this.value.length > 0) { 
+            document.getElementById('start_button').disabled = false; 
+        } else { 
+            document.getElementById('start_button').disabled = true;
+        }
+    }
+    function verify(){
+        if myText is empty{
+            alert "Put some text in there!"
+            return
+        }
+        else{
+            do button functionality
+        }
+    }
+</script>
+    <!-- <div class="col-md-3 col-sm-3">
+        <a class="twitter-timeline" data-height="600" href="https://twitter.com/PoliceNG?ref_src=twsrc%5Etfw">Tweets by
+            PoliceNG</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div> -->
+
+
+    def reset(self):
+        if self.senotp.get()=="":
+            messagebox.showerror("Error","Please enter the otp!!",parent=self.root2)
+        elif self.senotp.get()!=otp:
+            messagebox.showerror("Error","Please enter correct otp.",parent=self.root2)
+        elif self.new.get()=="":
+            messagebox.showerror("Error","Please enter the new password",parent=self.root2)
+        else:
+            try:
+                con = pymysql.connect(host="localhost", user="root", password="", database="users")
+                cur = con.cursor()
+                cur.execute("select * from customers where email=%s",self.txtu_name.get())
+                cur.fetchone()
+                cur.execute("update customers set pwd=%s where email=%s",(self.new.get(),self.txtu_name.get()))
+                con.commit()
+                con.close()
+                messagebox.showinfo("Success","Your password has been reset,please login with new password",parent=self.root2)
+                self.root2.destroy()
+                self.reset_clear()
+            except Exception as e:
+                messagebox.showerror("Error",f"Error Due to {str(e)}",parent=self.root2)
+
+    def reset_clear(self):
+        self.senotp("")
+        self.txtu_name("")
+        self.new("")
+
+
+    def forgot(self):
+        if self.txtu_name.get()=="":
+            messagebox.showerror("Error","Please Enter the email address to reset your password",parent=self.root)
+        else:
+            con = pymysql.connect(host="localhost", user="root", password="", database="users")
+            cur = con.cursor()
+            cur.execute("select * from customers where email=%s",self.txtu_name.get())
+            row = cur.fetchone()
+            if row == None:
+                messagebox.showerror("Error", "Please enter the valid email", parent=self.root)
+            else:
+                con.close()
+                self.root2 = Toplevel()
+                self.root2.title("Forgot Password")
+                self.root2.geometry("340x450+610+170")
+
+                lb2 = Label(self.root2,text="Forgot Password",font=("times new roman",12,"bold"),bg="white",fg="red")
+                lb2.place(x=0,y=10,relwidth=1)
+
+                senotp = Label(self.root2, text="Enter the OTP", font=("times new roman", 15, "bold"), bg="white", fg="black")
+                senotp.place(x=50, y=80)
+                self.senotp = ttk.Entry(self.root2,font=("times new roman",15,"bold"))
+                self.senotp.place(x=50,y=110,width=250)
+                
+                new_pass = Label(self.root2, text="New Password", font=("times new roman", 15, "bold"), bg="white", fg="black")
+                new_pass.place(x=50, y=220)
+                self.new = ttk.Entry(self.root2,show="*", font=("times new roman", 15))
+                self.new.place(x=50, y=250, width=250)
+
+                btn_forgot = Button(self.root2,text="Reset",command=self.reset,cursor="hand2",font=("times new roman",15,"bold"),fg="white",bg="green")
+                btn_forgot.place(x=80,y=290,width=180)
+
+                otpbtn = Button(self.root2,cursor="hand2",text="Verify OTP",command=self.verifyotp,font=("times new roman,",8,"bold"),fg="gray",bg="#141E27")
+                otpbtn.place(x=140, y=150,width=80)
+
+
+    def verifyotp(self):
+        senmail = self.txtu_name.get()
+        global otp
+        otp=''.join([str(random.randint(0,9))for i in range(4)])
+        server = smtplib.SMTP('smtp.gmail.com',587)
+        server.starttls()
+        server.login('beasthack2518@gmail.com',password='prmqniatfnsgzvbm')
+        subject = "Verify OTP"
+        body = "Hello, This is your OTP to verify your account for new password-" +str(otp)
+        mess = "subject:{}\n\n{}".format(subject,body)
+        server.sendmail('beasthack2518@gmail.com',senmail,mess)
+        server.quit()
+        messagebox.showinfo("Success","Please check your gmail to verify with otp",parent=self.root2)
+
+<!-- component -->
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+<div class="h-screen bg-gray-200 flex justify-center items-center dark:bg-gray-500">
+  <div x-data="{ open: false }" class="bg-white dark:bg-gray-800 w-64  shadow flex justify-center items-center">
+      <div @click="open = !open" class="relative border-b-4 border-transparent py-3" :class="{'border-indigo-700 transform transition duration-300 ': open}" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100">
+        <div class="flex justify-center items-center space-x-3 cursor-pointer">
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
+            <img src="https://images.unsplash.com/photo-1610397095767-84a5b4736cbd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="" class="w-full h-full object-cover">
+          </div>
+          <div class="font-semibold dark:text-white text-gray-900 text-lg">
+            <div class="cursor-pointer">Hasan Muhammad</div>
+          </div>
+        </div>
+        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5">
+          <ul class="space-y-3 dark:text-white">
+            <li class="font-medium">
+              <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
+                <div class="mr-3">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                </div>
+                Account
+              </a>
+            </li>
+            <li class="font-medium">
+              <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
+                <div class="mr-3">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </div>
+                Setting
+              </a>
+            </li>
+            <hr class="dark:border-gray-700">
+            <li class="font-medium">
+              <a href="#" class="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600">
+                <div class="mr-3 text-red-600">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                </div>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
+
+                              <!-- <td class="text-center">
+                                    <div class="toggle-btn">
+                                        <div class="inner-circle"></div>
+                                    </div>
+                                </td>
+
+
+                      
+
+{% set title = "Edit | " %}
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+    body {
+  background: #BA68C8;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #BA68C8;
+}
+
+.profile-button {
+  background: #BA68C8;
+  box-shadow: none;
+  border: none;
+}
+
+.profile-button:hover {
+  background: #682773;
+}
+
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none;
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none;
+}
+
+.back:hover {
+  color: #682773;
+  cursor: pointer;
+}
+</style>
+
+<div class="container rounded bg-white mt-5">
+    <div class="row">
+        <div class="col-md-4 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" width="90"><span class="font-weight-bold">John Doe</span><span class="text-black-50">john_doe12@bbb.com</span><span>United States</span></div>
+        </div>
+        <div class="col-md-8">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex flex-row align-items-center back"><i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                        <h6>Back to home</h6>
+                    </div>
+                    <h6 class="text-right">Edit Profile</h6>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><input type="text" class="form-control" placeholder="first name" value="John"></div>
+                    <div class="col-md-6"><input type="text" class="form-control" value="Doe" placeholder="Doe"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Email" value="john_doe12@bbb.com"></div>
+                    <div class="col-md-6"><input type="text" class="form-control" value="+19685969668" placeholder="Phone number"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><input type="text" class="form-control" placeholder="address" value="D-113, right avenue block, CA,USA"></div>
+                    <div class="col-md-6"><input type="text" class="form-control" value="USA" placeholder="Country"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Bank Name" value="Bank of America"></div>
+                    <div class="col-md-6"><input type="text" class="form-control" value="043958409584095" placeholder="Account Number"></div>
+                </div>
+                <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/status.css')}}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <span class="logo_name">Online Crime Reporting System</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#" class="active">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-book-alt'></i>
+                    <span class="links_name">Total Cases</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Users</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Setting</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="/logout">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Dashboard</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <i class='bx bx-search'></i>
+            </div>
+            <div class="profile-details">
+                <!-- <img src="images/profile.jpg" alt=""> -->
+                <span class="admin_name">Yash Raj</span>
+                <i class='bx bx-chevron-down'></i>
+            </div>
+        </nav>
+
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Cases </div>
+                        {% for row in value%}
+                        <div class="number">{{ row[0][0] }}</div>
+                        {% endfor %}
+                    </div>
+                    <!-- <i class='bx bx-cart-alt cart'></i> -->
+                </div>
+
+
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Solved Cases</div>
+                        <div class="number">---</div>
+                    </div>
+                    <i class='bx bxs-cart-add cart two'></i>
+                </div>
+
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Pending Cases</div>
+                        <div class="number">---</div>
+                    </div>
+                    <i class='bx bx-cart cart three'></i>
+                </div>
+
+
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Users</div>
+                        {% for row in value%}
+
+                        <div class="number">{{ row[0][1] }}</div>
+                        {% endfor %}
+                        <!-- <div class="indicator">
+              <i class='bx bx-down-arrow-alt down'></i>
+              <span class="text">Down From Today</span>
+            </div> -->
+                    </div>
+                    <i class='bx bxs-cart-download cart four'></i>
+                </div>
+            </div>
+
+
+
+            <div class="container mt-5">
+                <div class="d-flex justify-content-center row">
+                    <div class="col-md-10">
+                        <div class="rounded">
+                            <div class=" table-responsive table-borderless">
+
+                                <table id="data" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Users</th>
+                                            <th>Crime</th>
+                                            <th>Aadhar Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-body">
+                                        {% for row in value%}
+
+                                        <tr>
+                                            <td>{{ row[11]}}</td>
+                                            <td>{{ row[1]}}</td>
+                                            <td>{{ row[8]}}</td>
+                                            <td>{{ row[9]}}</td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+
+
+                                <!-- <ul class="details">
+                            <li class="topic">Date</li>
+                            <li><a href="#">02 Jan 2021</a></li>
+                        
+                        </ul>
+                        <ul class="details">
+                            <li class="topic">Users</li>
+                        </ul>
+                        <ul class="details">
+                            <li class="topic">Crime</li>
+                        </ul>
+                        <ul class="details">
+                            <li class="topic">Aadhar Number</li>
+                        </ul> -->
+                            </div>
+                            <div class="button">
+                                <a href="#">See All</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+    </section><br><br>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+
+</body>
+
+</html>
+
+to add the profile images
+                <div class="row">
+                    <div class="small-12 medium-2 large-2 columns">
+                        <div class="circle">
+                            <img class="profile-pic"
+                                src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+
+                        </div>
+                        <div class="p-image">
+                            <i class="fa fa-camera upload-button"></i>
+                            <input class="file-upload" type="file" accept="image/*" />
+                        </div>
+                    </div>
+                </div>
+                <hr>
