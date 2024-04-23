@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block subtitle %}Phising/SMS Detection{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 200px;">
+  <h2 class="text-center mt-3">Type or Paste SMS here to check it is Spam or
+    Not Spam</h2>
+  <br>
+  <form action="/sms" method="POST">
+    <div class="form-floating">
+      <textarea class="form-control" placeholder="paste your sms here..."
+        id="sms" name="sms" style="height: 100px;" required></textarea>
+      <label for="sms">Paste your sms here...</label><br>
+      <br>
+      <button class="btn btn-outline-danger">Detect</button>
+    </div>
+
+  </form>
+
+</div>
+{% endblock %}

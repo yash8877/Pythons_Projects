@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block subtitle %}Phising/Result{% endblock %}
+{% block content %}
+<div class="container" style="margin-top: 100px;">
+    <h3 class=" mt-3">Email Spam Classifier's result shown below 😀😀 </h3>
+  </div>
+  
+  <!-- Result -->
+  <div class="results">
+    {% if result==1 %}
+    <img class="gif" src="{{ url_for('static', filename='spam.webp') }}"
+    alt="SPAM Image">
+    <h1>Prediction: <span class='danger'>Gotcha! This is a SPAM
+        message.</span></h1>
+    {% elif result==0 %}
+    <img class="gif" src="{{ url_for('static', filename='not-spam.webp') }}"
+    alt="Not a spam image">
+    <h1>Prediction: <span class='safe'>Great! This is NOT a spam
+        message.</span></h1>
+    {% endif %}
+  
+    <p>Thanks for using my application..</p>
+    <a href="/sms">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go
+        Back</button>
+    </a>
+  
+  </div>
+{% endblock %}
